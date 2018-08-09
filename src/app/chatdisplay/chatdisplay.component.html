@@ -1,0 +1,55 @@
+
+<div id="channel">
+  <br />
+  <!-- <button (click)="getch()" >Get channel</button><br/>  -->
+  
+  <br /><br />
+  <input type="text" placeholder="create channel" [(ngModel)]="str_add"/> &nbsp; &nbsp;
+  <button (click)="addCh()" >Create channel</button><br/> <br /><br />
+  <!-- <input type="text" placeholder="add user"  [(ngModel)]="str_user"/> &nbsp; &nbsp;
+        <button (click)="addmember()" >add user</button><br/><br /> -->
+        <input type="text" placeholder="send Message" [(ngModel)]="str_msg"  >&nbsp; &nbsp;
+        <button (click)="sendMsg()" >send message</button><br/>  <br />
+        <input type="text" placeholder="send Message" [(ngModel)]="str_msg"  >&nbsp; &nbsp;
+        <button (click)="sendMsg()" >send message</button> 
+</div>
+  <div id="search">
+    <input type="text" placeholder="Search.." name="search">
+    
+</div> 
+<div id="message">
+                <!-- <input type="text" placeholder="message "  [(ngModel)]="showmsg" />
+                <button (click)="showMsg()" >show message  </button>   -->
+                <ul *ngFor="let msgdetail of messages">
+                  <li>{{msgdetail}}</li>
+                 </ul>
+</div>
+<div id="send">
+                    
+</div>
+<!--<div id="message">
+
+</div>
+ -->
+
+<!-- <div>
+    <input type="text" placeholder="create channel" [(ngModel)]="str_add"/>
+    <button (click)="addCh()" >Create channel</button><br/>
+</div> -->
+ 
+<!-- <div>
+        <input type="text" placeholder="add user"  [(ngModel)]="str_user"/>
+        <button (click)="addmember()" >add user</button><br/>
+</div> -->
+
+<!-- <div>
+        <input type="text" placeholder="send Message" [(ngModel)]="str_msg"  >
+        <button (click)="sendMsg()" >send message</button><br/>
+</div> -->
+
+<!-- <div>
+        <input type="text" placeholder="message "  [(ngModel)]="str_show" />
+        <button (click)="showMsg()" >show message  </button>         
+</div> -->
+
+
