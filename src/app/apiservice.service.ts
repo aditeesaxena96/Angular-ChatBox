@@ -3,10 +3,11 @@ import {  } from '../../node_modules/@angular/http';
 import { Observable } from 'rxjs';
 import { map} from 'rxjs/operators'
 import {  HttpHeaders, HttpParams, HttpClient } from '@angular/common/http';
+import { CanActivate, Router } from '../../node_modules/@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class APIserviceService {
+export class APIserviceService implements CanActivate {
  channelId="CH64356419d49c4347bda81ff819d59492";
  user:string="aditeesaxena96@gmail.com";
  channellist: any;
@@ -18,8 +19,20 @@ export class APIserviceService {
 
  
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private route: Router) { }
+  canActivate()
+  {
+    if(localStorage.getItem('id')==='1882917962016456' || localStorage.getItem('id')==='111349477154789473302' )
+    {
+      return true;
+    }
+    else
+    {
+      false;
+    }
+  }
   
+
  
   getdata() : Observable<any>
   {
@@ -27,19 +40,20 @@ export class APIserviceService {
     return this.http.post(this.url,body.toString(), httpOptions)
   }
 
-  getchannel() : Observable<any>
+  getchannel(search) : Observable<any>
   {
     const body=new HttpParams().set('UniqueName','chatting-box1');
-      return this.http.post(this.channel,body.toString(), httpOptions)
+      return this.http.get(this.channel,httpOptions)
   }
 
   setData() : Observable<any>{
     return this.http.post(this.url,"FriendlyName =Adi", httpOptions);
   }
 
-  // createChannel() : Observable<any>{
-  //   return this.http.post(this.channel,"UniqueName =Angular Chatbox", this.httpOptions);
-  // }
+  createChannel(create) : Observable<any>{
+    const body=new HttpParams().set('UniqueName', create);
+    return this.http.post(this.channel,body.toString(), httpOptions);
+ }
 
   displayChannel() : Observable<any>{
     return this.http.get(this.channel, httpOptions);
@@ -56,9 +70,10 @@ export class APIserviceService {
   // }
 
   
-  addUser(str_user) : Observable<any>{
-    return this.http.get("https://chat.twilio.com/v2/Services/ISc2cd82178ec546ef98854a4f62cc8de7/users"+str_user, httpOptions);
-  }
+   addUser(str_user) : Observable<any>{
+   const body=new HttpParams().set('ChannelSid', str_user.ServiceId).set('ServiceSid', str_user.ServiceId);
+   return this.http.get("https://chat.twilio.com/v2/Services/ISc2cd82178ec546ef98854a4f62cc8de7/users"+str_user, httpOptions);
+   }
 
   sendMessage(user) : Observable<any>{
     // return this.http.post("https://chat.twilio.com/v2/Services/ISc2cd82178ec546ef98854a4f62cc8de7/channels/CH0631f7fa19a84fbbb2b0045e8af85516/messages","FriendlyName =Aditee Saxena", httpOptions);

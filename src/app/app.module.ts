@@ -9,12 +9,14 @@ import { HttpModule, } from '@angular/http';
 import { APIserviceService } from './apiservice.service';
 import { ChatdisplayComponent } from './chatdisplay/chatdisplay.component';
 import {FormsModule } from '@angular/forms';
-const routes: Routes= [ 
+
+const routes: Routes= 
+[ 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path :'login',
-  component: AccessComponent
-},
-{ path: 'chatbox', component: ChatdisplayComponent },
+  component: AccessComponent},
+{ path: 'chatbox', component: ChatdisplayComponent , canActivate : [APIserviceService]},
+{ path: '**', component: AccessComponent }
 ];
 
 export function getAuthServiceConfigs()
@@ -46,12 +48,12 @@ export function getAuthServiceConfigs()
     SocialLoginModule,
     HttpModule,
     HttpClientModule,
-   FormsModule,
+    FormsModule,
     RouterModule.forRoot(routes)
   ],
   
   providers: [ APIserviceService,{ provide :AuthServiceConfig, 
     useFactory: getAuthServiceConfigs}],
-  bootstrap: [AppComponent]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

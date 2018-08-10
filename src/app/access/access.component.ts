@@ -19,24 +19,24 @@ export class AccessComponent implements OnInit {
     if(socialPlatform == "facebook"){
       socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
       var t =this.item =this.api.getdata();
-      this.router.navigate(['chatbox']);
+      // this.router.navigate(['chatbox']);
       t.subscribe(data=>console.log(data))
     }
     else if(socialPlatform == "google"){
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
        var t =this.item =this.api.getdata();
-       this.router.navigate(['chatbox']);
        t.subscribe(data=>console.log(data))
     }
     
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-       console.log(socialPlatform+" sign in data : " , userData.name);
+       console.log(socialPlatform+" sign in data : " , userData);
         // Now sign-in with userData
-        // ...
-
-       localStorage.setItem("imag", userData.image);
+        // ....
+       this.router.navigate(['chatbox']);
+       localStorage.setItem("id", userData.id);
        localStorage.setItem("name", userData.name);
+       localStorage.setItem("imag", userData.image);
       //  var i=localStorage.getItem("imag");
       //  var q=localStorage.getItem("name");
       //  console.log(i);
@@ -44,6 +44,8 @@ export class AccessComponent implements OnInit {
             
       }
     );
+    
+
   }
 
   ngOnInit() {
