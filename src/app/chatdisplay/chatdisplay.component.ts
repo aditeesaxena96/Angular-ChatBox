@@ -19,10 +19,10 @@ export class ChatdisplayComponent implements OnInit {
   str_show : string;
   search :string="";
   check : boolean=false;
-
+  messages=[];
   mychannels :string;
   channellist=[];
-
+  name1=localStorage.getItem('name');
   getch()
   {
       this.api.getchannel(this.search).subscribe(Response=> (console.log(Response))); 
@@ -32,16 +32,9 @@ export class ChatdisplayComponent implements OnInit {
   {
   this.api.addChannel(this.str_add).subscribe(Response=> 
     console.log(Response.unique_name)
-    //let length =Response.channellist.length;
-     // for(let index=0;index<length;index++)
-     // {
-      // this.channellist.push(Response.channellist[index].unique_name);
-     // }
-     //}),
-   // err=>{
-     // console.log(err);
     )
   }
+  
  channelarray:any;
   showchannel()
   {
@@ -62,17 +55,30 @@ export class ChatdisplayComponent implements OnInit {
   
 
   
-  sendMsg() {
-    this.api.sendMessage(this.str_msg).subscribe(res=>{
-      console.log(res)
-    }),
-    err=>{
+//   sendMsg() {
+//     this.api.sendMessage(this.str_msg).subscribe(res=>{
+// console.log(res)
+//     },
+//     err=>{
+//       console.log(err);
+//     },
+//     ()=>this.Show();
+//   });
+// }
+
+sendMsg() {
+  this.api.sendMessage(this.str_msg).subscribe(res => {   
+  },
+    err => {                                                         
       console.log(err);
-    }
- }
+    },
+    () => {                                                         
+      this.Show();
+    });
+}
 
  
-  messages=[];
+ 
   Show()
   {
    if(this.api.Show!= undefined)
@@ -90,6 +96,12 @@ export class ChatdisplayComponent implements OnInit {
       console.log(err);
     } 
   }
+  }
+
+  joinchannel(channels)
+  {
+    var all_ch=this.api.joinchannel_descript(channels);
+    all_ch.subscribe(data=>(console.log(data)));
   }
 
   ngOnInit() 

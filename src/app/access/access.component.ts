@@ -31,17 +31,13 @@ export class AccessComponent implements OnInit {
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
        console.log(socialPlatform+" sign in data : " , userData);
-        // Now sign-in with userData
-        // ....
+       this.api.UserData=userData;
        this.router.navigate(['chatbox']);
-       localStorage.setItem("id", userData.id);
-       localStorage.setItem("name", userData.name);
-       localStorage.setItem("imag", userData.image);
-      //  var i=localStorage.getItem("imag");
-      //  var q=localStorage.getItem("name");
-      //  console.log(i);
-      // console.log(name);
-            
+       
+       
+      //  localStorage.setItem("id", userData.id);
+      //  localStorage.setItem("name", userData.name);
+      //  localStorage.setItem("imag", userData.image);
       }
     );
     

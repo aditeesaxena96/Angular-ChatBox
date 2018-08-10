@@ -25,10 +25,10 @@
     position: fixed; 
     margin-left: 57%;
     position: absolute;
-    margin-top: -2%;
+    margin-top: 0%;
     margin-bottom: 1px solid #dcdcdc;
 }
-.sending
+#sending
 {
     width: 88%;
     height: 100%;
@@ -54,31 +54,25 @@
 #setting
 {
     width:150px;
-    height: 70px;
-    margin-top: 1%;
+    height: 50px;
+    /* margin-top: 2%; */
     cursor: pointer;
 }
-
-/* #search input
+#send_button
 {
-    float: right;
-    width: 15%;
-    height: 80%;
+  height: 80%;
 }
-#message
+
+#chshow
 {
-    width: 80%;
-    height: 80%;
-    position: fixed;
-    border: 2px solid #dcdcdc;
-    margin-left: 20%;
-    margin-top: 3.0%;
-    overflow: auto;
-} */
+    color: #ffffff
+}
+
 .first
 {
     float: left;
 }
+
 .another
 {
     float: right;

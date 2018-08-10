@@ -15,7 +15,7 @@ const routes: Routes=
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path :'login',
   component: AccessComponent},
-{ path: 'chatbox', component: ChatdisplayComponent , canActivate : [APIserviceService]},
+{ path: 'chatbox', component: ChatdisplayComponent },
 { path: '**', component: AccessComponent }
 ];
 

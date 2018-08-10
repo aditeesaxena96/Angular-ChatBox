@@ -1,15 +1,15 @@
 <div class="channel">
-  <!-- <button (click)="getch()" >Get channel</button><br/>  -->
-  {{name}}
-  <br /><br/>
+  <!-- <button (click)="getch()" >Get channel</button><br/>  -->&nbsp;&nbsp;
+  <h1 id="chshow">&nbsp;&nbsp;&nbsp;&nbsp;{{name1}}</h1>
+  <br />
   <div id="channel-data">
                 <input type="text" placeholder="create channel" [(ngModel)]="str_add"/> <br/><br/>
                 <button (click)="addCh()" >Create channel</button><br/> <br />
                 <div *ngFor="let channels of channellist">
                       <span> {{channels.unique_name}}</span><br/>
                 </div>
-                <ul *ngFor="let channels of channelarray">
-                  <li><b>{{channels.unique_name}}</b></li>
+                <ul id="chshow" *ngFor="let channels of channelarray" >
+                  <li><b>{{channels.unique_name}}</b><button (click)="joinchannel(channels)">Join</button></li>
                 </ul>
    <!-- <input type="text" placeholder="add user"  [(ngModel)]="str_user"/> <br/><br/>
    <button (click)="addmember()" >add user</button><br/><br /> -->
@@ -19,7 +19,7 @@
 
 <div class="display">
                 <div class="search">
-                                <img src="/src/assets/Capture.PNG" alt="setting" id="setting">
+                                <img src="/src/assets/Capture.PNG" alt="setting" id="setting"> &nbsp; &nbsp;
                                 <input type="text" placeholder="Search.." name="search" > &nbsp; &nbsp;
                                 <img src="/src/assets/Capture1.PNG" at="starred" id="starred" >
                 </div> 
@@ -31,7 +31,7 @@
                 </div>
                 <div class="send">
                                 <input type="text" id="sending" placeholder="send Message" [(ngModel)]="str_msg"  >&nbsp; &nbsp;
-                                <button (click)="sendMsg()" >send message</button><br/>  <br />
+                                <button (click)="sendMsg()" id="send_button">send message</button><br/>  <br />
                 </div>
 </div>
   

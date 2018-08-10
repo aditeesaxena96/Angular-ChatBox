@@ -7,7 +7,7 @@ import { CanActivate, Router } from '../../node_modules/@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class APIserviceService implements CanActivate {
+export class APIserviceService {
  channelId="CH64356419d49c4347bda81ff819d59492";
  user:string="aditeesaxena96@gmail.com";
  channellist: any;
@@ -20,19 +20,19 @@ export class APIserviceService implements CanActivate {
  
 
   constructor(private http:HttpClient, private route: Router) { }
-  canActivate()
-  {
-    if(localStorage.getItem('id')==='1882917962016456' || localStorage.getItem('id')==='111349477154789473302' )
-    {
-      return true;
-    }
-    else
-    {
-      false;
-    }
-  }
+  // canActivate()
+  // {
+  //   if(localStorage.getItem('id')==='1882917962016456' || localStorage.getItem('id')==='111349477154789473302' )
+  //   {
+  //     return true;
+  //   }
+  //   else
+  //   {
+  //     false;
+  //   }
+  // }
   
-
+  UserData : any;
  
   getdata() : Observable<any>
   {
@@ -50,17 +50,16 @@ export class APIserviceService implements CanActivate {
     return this.http.post(this.url,"FriendlyName =Adi", httpOptions);
   }
 
-  createChannel(create) : Observable<any>{
-    const body=new HttpParams().set('UniqueName', create);
-    return this.http.post(this.channel,body.toString(), httpOptions);
- }
+//   createChannel(create) : Observable<any>{
+//     const body=new HttpParams().set('UniqueName', create);
+//     return this.http.post(this.channel,body.toString(), httpOptions);
+//  }
 
   displayChannel() : Observable<any>{
     return this.http.get(this.channel, httpOptions);
   }
-  // chnl : string;
+  
   addChannel(str_add ) : Observable<any>{
-   // const body=new HttpParams().set('UniqueName', 'chatting');
     return this.http.post("https://chat.twilio.com/v2/Services/ISc2cd82178ec546ef98854a4f62cc8de7/Channels",'FriendlyName=Adi&UniqueName='+str_add , httpOptions);
   }
 
@@ -68,6 +67,11 @@ export class APIserviceService implements CanActivate {
   // addRole() : Observable<any>{
   //   return this.http.post("https://chat.twilio.com/v2/Services/ISee3ad4f4257240569a8af5351afab978/roles","FriendlyName =Aditee Saxena & Permission=createchannel & type=deployment", this.httpOptions);
   // }
+
+  joinchannel_descript(channel_join) : Observable<any>{
+    const body =new HttpParams().set('ChannelSid', channel_join.ServiceId).set("ServiceSid", channel_join.Sid).set("Identity",this.UserData.id);
+    return this.http.post(channel_join.links.members,body.toString(), httpOptions)
+  }
 
   
    addUser(str_user) : Observable<any>{
@@ -77,7 +81,7 @@ export class APIserviceService implements CanActivate {
 
   sendMessage(user) : Observable<any>{
     // return this.http.post("https://chat.twilio.com/v2/Services/ISc2cd82178ec546ef98854a4f62cc8de7/channels/CH0631f7fa19a84fbbb2b0045e8af85516/messages","FriendlyName =Aditee Saxena", httpOptions);
-    return this.http.post("https://chat.twilio.com/v2/Services/"+this.ServiceId+"/Channels/"+this.channelId+"/Messages","ChannelSid="+this.channelId+"&ServicesSid="+this.ServiceId+"&Body="+user+"&From="+this.user,httpOptions);
+    return this.http.post("https://chat.twilio.com/v2/Services/"+this.ServiceId+"/Channels/"+this.channelId+"/Messages","ChannelSid="+this.channelId+"&ServicesSid="+this.ServiceId+"&Body="+user+"&From="+this.UserData.id,httpOptions);
   }
 
  showMessage(user) : Observable<any>{
