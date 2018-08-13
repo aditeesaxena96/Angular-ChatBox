@@ -65,55 +65,22 @@
 
 #chshow
 {
-    color: #ffffff
+    color: #ffffff;
 }
 
-.first
+#first
 {
-    float: left;
+    float:left;
 }
 
-.another
+#another
 {
-    float: right;
+    float:  right;
 }
-
-/*
-input
+.alert
 {
-    width: 35%;
-    height: 4%;
-    font-size: 17px;
-    border: 1px solid gray;
-} 
-button{
-    width: 30%;
-    height: 5%;
-    font-size: 12px;
+    width: 51%;
 }
 
 
-#message
-{
-    width: 80%;
-    height: 80%;
-    position: fixed;
-    border: 2px solid red;
-    margin-left: 20%;
-    margin-top: 3.0%;
-}
- 
-/* #type input
-{
-    width: 70%;
-    height: 15%;
-    margin-top: 45%;
-    border: 2px solid darkmagenta;
-    margin-left: 20%;   
-} 
-#type button
-{
-    width: 30%;
-    height: 4%;
-    font-size: 12px; 
-} */ 
+

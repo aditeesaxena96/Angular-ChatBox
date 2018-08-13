@@ -5,15 +5,12 @@
   <div id="channel-data">
                 <input type="text" placeholder="create channel" [(ngModel)]="str_add"/> <br/><br/>
                 <button (click)="addCh()" >Create channel</button><br/> <br />
-                <div *ngFor="let channels of channellist">
+                <!-- <div *ngFor="let channels of channellist">
                       <span> {{channels.unique_name}}</span><br/>
-                </div>
-                <ul id="chshow" *ngFor="let channels of channelarray" >
-                  <li><b>{{channels.unique_name}}</b><button (click)="joinchannel(channels)">Join</button></li>
+                </div> -->
+                <ul id="chshow" *ngFor="let channelsId of channelarray" >
+                  <li><b (click)="Send(channelsId)">{{channelsId.unique_name}}</b><button (click)="joinchannel(channelsId)">Join</button></li>
                 </ul>
-   <!-- <input type="text" placeholder="add user"  [(ngModel)]="str_user"/> <br/><br/>
-   <button (click)="addmember()" >add user</button><br/><br /> -->
-
    </div> 
 </div>
 
@@ -25,13 +22,14 @@
                 </div> 
                 <div class="message">
                                 <div *ngFor="let msg of messages">
-                                  <span class="first" *ngIf="msg.from==id"> {{msg}}</span><br/>
-                                  <span class="another" *ngIf="msg.from!=id">{{msg}}</span>
+                                 
+                                  <span id="first" class="alert alert-success" *ngIf="msg.from===id"> {{msg.body}}</span><br/>
+                                  <span id="another" class="alert alert-danger" *ngIf="msg.from!=id">{{msg.body}}</span>
                                 </div>
                 </div>
                 <div class="send">
                                 <input type="text" id="sending" placeholder="send Message" [(ngModel)]="str_msg"  >&nbsp; &nbsp;
-                                <button (click)="sendMsg()" id="send_button">send message</button><br/>  <br />
+                                <button (click)="sendMsg()" >send message</button><br/>  <br />
                 </div>
 </div>
   

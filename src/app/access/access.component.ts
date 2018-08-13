@@ -16,26 +16,23 @@ export class AccessComponent implements OnInit {
   
   public socialSignIn(socialPlatform : string) {
     let socialPlatformProvider;
-    if(socialPlatform == "facebook"){
-      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-      var t =this.item =this.api.getdata();
-      // this.router.navigate(['chatbox']);
-      t.subscribe(data=>console.log(data))
-    }
-    else if(socialPlatform == "google"){
+   
+    if(socialPlatform == "google"){
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-       var t =this.item =this.api.getdata();
-       t.subscribe(data=>console.log(data))
     }
     
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
        console.log(socialPlatform+" sign in data : " , userData);
        this.api.UserData=userData;
-       this.router.navigate(['chatbox']);
+       var result = this.api.getchannel();
+       result.subscribe(data=>{this.api.Allchannel=data.channels;
+        this.router.navigate(['chatbox']);
+      })
        
        
-      //  localStorage.setItem("id", userData.id);
+       
+       localStorage.setItem("id", userData.id);
       //  localStorage.setItem("name", userData.name);
       //  localStorage.setItem("imag", userData.image);
       }
