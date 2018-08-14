@@ -8,7 +8,7 @@ import { CanActivate, Router } from '../../node_modules/@angular/router';
   providedIn: 'root'
 })
 
-export class APIserviceService 
+export class APIserviceService implements CanActivate
 {
   user:string="aditeesaxena96@gmail.com";
   channellist: any;
@@ -21,6 +21,17 @@ export class APIserviceService
  
   constructor(private http:HttpClient, private route: Router) { }
   
+  auth:boolean =false;
+  canActivate()
+  {
+    if(JSON.parse(sessionStorage.getItem('Userdata'))!=undefined){
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
   UserData : any;
   Allchannel :any;
   showmsg;

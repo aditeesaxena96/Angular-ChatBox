@@ -13,7 +13,11 @@ export class ChatdisplayComponent implements OnInit {
 
   constructor(private api: APIserviceService, private route: Router) {
     this.id = localStorage.getItem('id');
+    this.image=api.UserData.image;
+    this.name=this.api.UserData.name;
   }
+  image;
+  name :string;
   str1: string;
   str_msg: string;
   str_add: string;
@@ -24,7 +28,7 @@ export class ChatdisplayComponent implements OnInit {
   messages;
   mychannels: string;
   channellist = [];
-  name1 = localStorage.getItem('name');
+  //name1 = localStorage.getItem('name');
   id;
   messageurl: string = "https://chat.twilio.com/v2/Services/ISc2cd82178ec546ef98854a4f62cc8de7/Channels";
 
@@ -73,13 +77,19 @@ export class ChatdisplayComponent implements OnInit {
   channelsId;
   joinchannel(channelsId) {
     this.member = channelsId;
-
+    
     var all_ch = this.api.joinchannel_descript(channelsId);
     all_ch.subscribe(data => { });
   }
   Send(id) {
-    this.member = id;
+  
     // console.log(this.member)
+  }
+
+  logout()
+  {
+    sessionStorage.removeItem('Userdata');
+    this.route.navigate(['/login']);
   }
 
   ngOnInit() {

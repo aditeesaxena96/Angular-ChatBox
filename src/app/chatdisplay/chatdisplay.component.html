@@ -1,36 +1,36 @@
 <div class="channel">
-  <!-- <button (click)="getch()" >Get channel</button><br/>  -->&nbsp;&nbsp;
-  <h1 id="chshow">&nbsp;&nbsp;&nbsp;&nbsp;{{name1}}</h1>
+  &nbsp;
+   <h1 id="chshow">&nbsp;&nbsp;{{name}}</h1> 
+   <span class="glyphicon glyphicon-bell"></span>
   <br />
   <div id="channel-data">
-                <input type="text" placeholder="create channel" [(ngModel)]="str_add"/> <br/><br/>
-                <button (click)="addCh()" >Create channel</button><br/> <br />
-                <!-- <div *ngFor="let channels of channellist">
-                      <span> {{channels.unique_name}}</span><br/>
-                </div> -->
-                <ul id="chshow" *ngFor="let channelsId of channelarray" >
-                  <li><b (click)="Send(channelsId)">{{channelsId.unique_name}}</b><button (click)="joinchannel(channelsId)">Join</button></li>
-                </ul>
+      <input type="text" placeholder="create channel" [(ngModel)]="str_add"/>
+      <button (click)="addCh()" ><b>+</b></button><br/> <h3>All Channels</h3>
+      <div id="chshow" *ngFor="let channelsId of channelarray" >
+      <a (click)="joinchannel(channelsId)"><b>{{channelsId.unique_name}}</b></a>
+      </div>
    </div> 
 </div>
 
 <div class="display">
-                <div class="search">
-                                <img src="/src/assets/Capture.PNG" alt="setting" id="setting"> &nbsp; &nbsp;
-                                <input type="text" placeholder="Search.." name="search" > &nbsp; &nbsp;
-                                <img src="/src/assets/Capture1.PNG" at="starred" id="starred" >
-                </div> 
-                <div class="message">
-                                <div *ngFor="let msg of messages">
-                                 
-                                  <span id="first" class="alert alert-success" *ngIf="msg.from===id"> {{msg.body}}</span><br/>
-                                  <span id="another" class="alert alert-danger" *ngIf="msg.from!=id">{{msg.body}}</span>
-                                </div>
-                </div>
-                <div class="send">
-                                <input type="text" id="sending" placeholder="send Message" [(ngModel)]="str_msg"  >&nbsp; &nbsp;
-                                <button (click)="sendMsg()" >send message</button><br/>  <br />
-                </div>
+    <div class="search">
+          <img src={{image}} alt="photo">
+          <img src="/src/assets/Capture.PNG" alt="setting" id="setting"> &nbsp; &nbsp;
+          <input type="text" placeholder="Search.." name="search" > &nbsp; &nbsp;
+          <img src="/src/assets/Capture1.PNG" at="starred" id="starred" >
+          <a class="btn btn-info btn-lg" (click)="logout()">
+          <span class="glyphicon glyphicon-log-out"></span>Logout</a>
+      </div> 
+      <div class="message">
+          <div *ngFor="let msg of messages">                 
+              <span id="first" class="alert alert-success" *ngIf="msg.from===id"> {{msg.body}}</span><br/>
+              <span id="another" class="alert alert-danger" *ngIf="msg.from!=id">{{msg.body}}</span>
+          </div>
+      </div>
+      <div class="send">
+              <input type="text" id="sending" placeholder="send Message" [(ngModel)]="str_msg"  >&nbsp; &nbsp;
+              <button (click)="sendMsg()" >send message</button><br/>  <br />
+      </div>
 </div>
   
 

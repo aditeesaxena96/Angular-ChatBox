@@ -3,6 +3,7 @@ import { AuthService,FacebookLoginProvider,GoogleLoginProvider} from 'angular-6-
 import {  HttpHeaders, HttpParams, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { APIserviceService } from '../apiservice.service';
+import { Jsonp } from '../../../node_modules/@angular/http';
 @Component({
   selector: 'app-access',
   templateUrl: './access.component.html',
@@ -10,7 +11,14 @@ import { APIserviceService } from '../apiservice.service';
 })
 export class AccessComponent implements OnInit {
 
-  constructor(private socialAuthService : AuthService, private api: APIserviceService, private router :Router) { }
+  constructor(private socialAuthService : AuthService, private api: APIserviceService, private router :Router) { 
+    api.UserData=JSON.parse(sessionStorage.getItem('Userdata'));
+    if(JSON.parse(sessionStorage.getItem('Userdata'))!=undefined)
+    {
+      router.navigate(['/chatbox']);
+      alert('Already Log in');
+    }
+  }
 
   item;
   
@@ -23,8 +31,10 @@ export class AccessComponent implements OnInit {
     
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-       console.log(socialPlatform+" sign in data : " , userData);
+        sessionStorage.setItem('Userdata',JSON.stringify(userData))
+       //console.log(socialPlatform+" sign in data : " , userData);
        this.api.UserData=userData;
+       this.api.auth=true;
        var result = this.api.getchannel();
        result.subscribe(data=>{this.api.Allchannel=data.channels;
         this.router.navigate(['chatbox']);

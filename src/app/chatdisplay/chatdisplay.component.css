@@ -4,6 +4,7 @@
     width: 20%;
     height: 100%;
     position: fixed;  
+    overflow: auto;
     
 } 
 .display
@@ -23,7 +24,7 @@
     width: 97%;
     height: 7%;
     position: fixed; 
-    margin-left: 57%;
+    margin-left: 2%;
     position: absolute;
     margin-top: 0%;
     margin-bottom: 1px solid #dcdcdc;
@@ -49,14 +50,20 @@
 }
 .glyphicon
 {
-    width: 10%;
+    width: 25px;
+    color: #ffffff
+}
+#starred
+{
+    height: 30%;
 }
 #setting
 {
     width:150px;
-    height: 50px;
+    height: 40px;
     /* margin-top: 2%; */
     cursor: pointer;
+    margin-left: 30%;
 }
 #send_button
 {
@@ -81,6 +88,15 @@
 {
     width: 51%;
 }
-
+a{
+    color : #ffffff;
+    cursor: pointer;
+}
+h3{
+    color: #ffffff;
+}
+img{
+    width: 4%;
+}
 
 
