@@ -41,7 +41,8 @@ export function getAuthServiceConfigs()
   declarations: [
     AppComponent,
     AccessComponent,
-    ChatdisplayComponent
+    ChatdisplayComponent,
+    
   ],
   imports: [
     BrowserModule,

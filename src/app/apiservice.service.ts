@@ -79,14 +79,14 @@ export class APIserviceService implements CanActivate
 
   joinchannel_descript(channelid) : Observable<any>{
     
-    const body =new HttpParams().set('ChannelSid', channelid.SetviceId).set("ServiceSid", channelid.sid).set("Identity",localStorage.getItem('id'));
+    const body =new HttpParams().set('ChannelSid', channelid.SetviceId).set("ServiceSid", channelid.sid).set("Identity",JSON.parse(sessionStorage.getItem('Userdata')).email);
     return this.http.post(channelid.links.members,body.toString(), httpOptions)
   }
 
 
   sendMessage(message,member) : Observable<any>{
     console.log(member,"member")
-    const body=new HttpParams().set('ChannelSid',member.service_id).set('ServiceSid',member.sid).set('Body',message).set('From', localStorage.getItem('id'))
+    const body=new HttpParams().set('ChannelSid',member.service_id).set('ServiceSid',member.sid).set('Body',message).set('From', JSON.parse(sessionStorage.getItem('Userdata')).email);
     return this.http.post(member.links.messages,body.toString(),httpOptions);
   }
 
@@ -95,10 +95,6 @@ export class APIserviceService implements CanActivate
    
     return this.http.get(channel.links.messages,httpOptions)
   }
-
-  
-
-
 }
 
 const httpOptions = {

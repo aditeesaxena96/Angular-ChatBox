@@ -12,10 +12,11 @@ import { Router } from '../../../node_modules/@angular/router';
 export class ChatdisplayComponent implements OnInit {
 
   constructor(private api: APIserviceService, private route: Router) {
-    this.id = localStorage.getItem('id');
-    this.image=api.UserData.image;
-    this.name=this.api.UserData.name;
+    this.id = JSON.parse(sessionStorage.getItem('Userdata')).id
+    this.image=JSON.parse(sessionStorage.getItem('Userdata')).image
+    this.name=JSON.parse(sessionStorage.getItem('Userdata')).name
   }
+  channels_name="";
   image;
   name :string;
   str1: string;
@@ -32,12 +33,14 @@ export class ChatdisplayComponent implements OnInit {
   id;
   messageurl: string = "https://chat.twilio.com/v2/Services/ISc2cd82178ec546ef98854a4f62cc8de7/Channels";
 
-
+  
   addCh() {
     if (this.str_add != "") {
       var channeldetail = this.api.createChannel(this.str_add);
       channeldetail.subscribe(Response => { });
       //this.channellist=this.api.Allchannel;
+      this.showchannel();
+
     }
 
   }
@@ -56,7 +59,7 @@ export class ChatdisplayComponent implements OnInit {
 
 
   sendMsg() {
-
+    this.loading=true;
     this.api.sendMessage(this.str_msg, this.member).subscribe(data => console.log(data))
 
     var display_msg = this.api.showMessage(this.member).subscribe(data => { console.log(data.messages) })
@@ -73,17 +76,33 @@ export class ChatdisplayComponent implements OnInit {
     
     }
   }
-
+  public loading =false;
   channelsId;
   joinchannel(channelsId) {
     this.member = channelsId;
-    
+    this.channels_name=channelsId.unique_name
     var all_ch = this.api.joinchannel_descript(channelsId);
     all_ch.subscribe(data => { });
   }
   Send(id) {
   
     // console.log(this.member)
+  }
+  length;
+  channelfound;
+  channelsearch1
+  channelsearch()
+  {
+    var flag=false; 
+  //  console.log(this.channelarray,this.channelsearch1)
+    this.channelarray.forEach(element => {
+      if(element.unique_name===this.channelsearch1)
+      {
+        console.log(element);
+        this.channelfound=element.unique_name;
+      }
+      
+    });
   }
 
   logout()
@@ -95,6 +114,7 @@ export class ChatdisplayComponent implements OnInit {
   ngOnInit() {
     setInterval(() => { this.Show() }, 1000)
     this.showchannel();
+    
   }
 
 }

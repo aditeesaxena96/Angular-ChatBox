@@ -19,6 +19,9 @@
 {
     text-align: center;
 }
+p{
+    color: #ffffff;
+}
 .search 
 {
     width: 97%;
@@ -55,7 +58,12 @@
 }
 #starred
 {
-    height: 30%;
+    height: 40%;
+    width: 150px;
+}
+#head_channel
+{
+    font-size: 25px;
 }
 #setting
 {
@@ -64,6 +72,7 @@
     /* margin-top: 2%; */
     cursor: pointer;
     margin-left: 30%;
+
 }
 #send_button
 {
@@ -77,12 +86,12 @@
 
 #first
 {
-    float:left;
+    float: right;
 }
 
 #another
 {
-    float:  right;
+    float:  left;
 }
 .alert
 {

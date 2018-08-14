@@ -16,7 +16,7 @@ export class AccessComponent implements OnInit {
     if(JSON.parse(sessionStorage.getItem('Userdata'))!=undefined)
     {
       router.navigate(['/chatbox']);
-      alert('Already Log in');
+  
     }
   }
 
@@ -42,7 +42,7 @@ export class AccessComponent implements OnInit {
        
        
        
-       localStorage.setItem("id", userData.id);
+       //localStorage.setItem("id", userData.id);
       //  localStorage.setItem("name", userData.name);
       //  localStorage.setItem("imag", userData.image);
       }
